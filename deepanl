@@ -21,6 +21,29 @@ Explanation: There are three ways to climb to the top.
 1. 1 step + 1 step + 1 step
 2. 1 step + 2 steps
 3. 2 steps + 1 step
+
+
+anss
+class Solution {
+public:
+    int climbStairs(int n) {
+        if (n == 1)
+            return 1;
+        if (n == 2)
+            return 2;
+        int one_step=1;
+        int two_step=2;
+        int current_climbing_ways=0;
+
+        for(int i=3;i<=n;i++){
+
+            current_climbing_ways=one_step+two_step;
+            one_step=two_step;
+            two_step= current_climbing_ways;
+
+        }return current_climbing_ways;
+    }
+};
  
 
 Constraints:  
