@@ -8,3 +8,21 @@ INTUITION , ETC ETC
 ANS)SO IF THE ROBBER WENT TO TQWO ADJACENT OR ADJACENT HOUSES , THE ALARM MIGHT RING , SO THE ROBBER 1ST WENT TO 1 THEN MISSED 2 AND WNET TO 3 INASTEAD
 
 1) HOW IS MEMOIZATION WORKING HERE , LIKE THE ROBBER IS GOING TO THE EACH HOUSES , I THINK ITS A DP PROBLEM AND GREEDY APPROACH MIGHT NOT WORK , I AM ALSO HINKING ABT THE ODDD EVENE APPROACH OF THE PROBLEM .
+
+
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        //if (nums.size() == 0) return 0 or if (nums.empty()) return 0;
+        //if (nums == 0) return 0;  initially as noober , here nums is a vector not a integer,Comparing a vector<int> to 0 doesn’t mean check if the array is empty
+        if (nums.empty()) return 0;     // no houses → no money
+        if (nums.size() == 1) return nums[0]; 
+        int n= nums.size(); // only one house → rob it
+        vector<int> dp(n, 0);
+        dp[0] = nums[0]; 
+        dp[1] = max(nums[0], nums[1]);
+        for (int i = 2; i < nums.size(); i++){
+            dp[i] = max(nums[i] + dp[i-2], dp[i-1]);
+        }return dp[n - 1];  
+    }
+};
